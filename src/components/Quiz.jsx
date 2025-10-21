@@ -20,12 +20,14 @@ export default function Quiz() {
     );
   }
 
+  const shuffledAnswers = [...QUESTIONS_DATA[activeQuestionIndex].answers].sort(() => Math.random() - 0.5);
+
   return (
     <div id="quiz">
       <div id="question">
         <h2>{QUESTIONS_DATA[activeQuestionIndex].text}</h2>
         <ul id="answers">
-          {QUESTIONS_DATA[activeQuestionIndex].answers.map(answer => (
+          {shuffledAnswers.map(answer => (
             <li key={answer} className="answer">
               <button onClick={() => handleSelectAnswer(answer)}>{answer}</button>
             </li>
