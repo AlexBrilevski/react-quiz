@@ -1,13 +1,23 @@
 import { useState } from 'react';
 import QUESTIONS_DATA from '../questions.js';
+import quizCompleteImg from '../assets/quiz-complete.png';
 
 export default function Quiz() {
   const [userAnswers, setUserAnswers] = useState([]);
-
   const activeQuestionIndex = userAnswers.length;
+  const quizIsComplete = activeQuestionIndex === QUESTIONS_DATA.length;
 
   function handleSelectAnswer(selectedAnswer) {
     setUserAnswers(prevAnswers => [...prevAnswers, selectedAnswer]);
+  }
+
+  if (quizIsComplete) {
+    return (
+      <div id="summary">
+        <img src={quizCompleteImg} alt="Trophy icon"/>
+        <h2>Quiz is complete</h2>
+      </div>
+    );
   }
 
   return (
